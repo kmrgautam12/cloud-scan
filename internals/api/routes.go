@@ -6,11 +6,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func RegisterRoutes(e *echo.Echo) {
-
-	// e.GET("/health", Health)
+func RegisterRoutes(e *echo.Echo, handler *handlers.JobHandler) {
 	v1 := e.Group("/api/v1")
-	v1.POST("/jobs", handlers.CreateJobs)
-	// v1.GET("/jobs/:id", GetJobs)
-	// v1.GET("/jobs", ListJobs)
+	v1.POST("/jobs", handler.CreateJobs)
 }

@@ -1,19 +1,20 @@
 package service
 
-import "distributed-job-scheduler/jobqueue/utils/structure"
+import (
+	"distributed-job-scheduler/jobqueue/internals/repository"
+	"distributed-job-scheduler/jobqueue/utils/structure"
+)
 
-type Service struct {
-	db string
+type JobService struct {
+	repo *repository.JobRepository
 }
 
 type SchedulerService interface {
 	CreateJobs(req structure.CreateJobs) error
 }
 
-func NewService() Service {
-	return Service{}
-}
-func (s *Service) CreateJobs() error {
-	// return nil
-	return nil
+func NewJobService(repo *repository.JobRepository) *JobService {
+	return &JobService{
+		repo: repo,
+	}
 }
