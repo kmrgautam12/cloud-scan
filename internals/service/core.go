@@ -18,3 +18,6 @@ func NewJobService(repo *repository.JobRepository) *JobService {
 		repo: repo,
 	}
 }
+func (service *JobService) CreateJobs(req structure.CreateJobs) {
+
+}
