@@ -20,6 +20,5 @@ func main() {
 	service := service.NewJobService(repo)
 	handler := handlers.NewJobHandler(service)
 	api.RegisterRoutes(e, handler)
-
 	e.Logger.Fatal(e.Start(":8080"))
 }
