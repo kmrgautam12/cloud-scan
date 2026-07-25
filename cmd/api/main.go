@@ -16,7 +16,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	repo := repository.NewJobRepository(db)
+	repo, err := repository.NewJobRepository(db)
+	if err != nil {
+		panic(err)
+	}
 	service := service.NewJobService(repo)
 	handler := handlers.NewJobHandler(service)
 	api.RegisterRoutes(e, handler)

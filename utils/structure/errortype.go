@@ -13,9 +13,15 @@ func Resp200WithMessage(e echo.Context, msg any) {
 		Response: msg,
 	})
 }
-func Resp400WithMessage(e echo.Context, msg any) {
+func Resp400WithMessage(e echo.Context, msg error) {
 	e.JSON(400, ApiResponse{
 		Code:     400,
-		Response: msg,
+		Response: msg.Error(),
+	})
+}
+func Resp500WithMessage(e echo.Context, msg error) {
+	e.JSON(500, ApiResponse{
+		Code:     500,
+		Response: msg.Error(),
 	})
 }

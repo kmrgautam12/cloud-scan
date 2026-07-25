@@ -20,7 +20,7 @@ func (h *JobHandler) CreateJobs(c echo.Context) error {
 	body := structure.CreateJobs{}
 	err := c.Bind(&body)
 	if err != nil {
-		structure.Resp400WithMessage(c, err.Error())
+		structure.Resp400WithMessage(c, err)
 		return nil
 	}
 	h.service.CreateJobs(body)
