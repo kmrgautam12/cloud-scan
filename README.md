@@ -1,0 +1,1 @@
+CloudScan is a distributed file scanning system. Files uploaded to Amazon S3 are processed through an event-driven workflow, where an orchestrator assigns scan jobs to gRPC-based scanner workers. The project focuses on building a scalable and fault-tolerant backend using Go, gRPC, PostgreSQL, Amazon S3, and Amazon SQS.
