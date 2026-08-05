@@ -6,8 +6,10 @@ import (
 	"distributed-job-scheduler/jobqueue/internals/database"
 	"distributed-job-scheduler/jobqueue/internals/repository"
 	"distributed-job-scheduler/jobqueue/internals/service"
+	"net"
 
 	echo "github.com/labstack/echo/v4"
+	"google.golang.org/grpc"
 )
 
 func main() {
@@ -23,5 +25,15 @@ func main() {
 	service := service.NewJobService(repo)
 	handler := handlers.NewJobHandler(service)
 	api.RegisterRoutes(e, handler)
+
 	e.Logger.Fatal(e.Start(":8080"))
+}
+
+func startGrpcServer(e echo.Context) {
+	listener, err := net.Listen("tcp", ":50051")
+	if err != nil {
+		panic(err)
+	}
+	grpc := grpc.NewServer()
+
 }

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "stub/proto";
+
+service ScannerService {
+    rpc ScanFile(ScanRequest) returns (ScanResponse);
+}
+
+message ScanRequest{
+    string job_id =1;
+    string bucket =2;
+    string object_key=3;
+}
+
+message ScanResponse{
+    bool infected =1;
+    string severity =2;
+    string message =3; 
+}
