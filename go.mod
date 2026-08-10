@@ -23,6 +23,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.36.6 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.43.3 // indirect
 	github.com/aws/smithy-go v1.27.3 // indirect
+	github.com/dutchcoders/go-clamd v0.0.0-20170520113014-b970184f4d9e // indirect
 	github.com/gofrs/uuid/v5 v5.4.0 // indirect
 	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
 	github.com/jackc/puddle/v2 v2.2.2 // indirect

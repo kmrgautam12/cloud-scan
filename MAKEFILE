@@ -1,0 +1,9 @@
+.PHONY: clamav
+
+clamav:
+	@echo "Starting ClamAV..."
+	@freshclam
+	@clamd &
+	@echo "Waiting for ClamAV..."
+	@until clamdscan --ping >/dev/null 2>&1; do sleep 1; done
+	@echo "ClamAV is ready on 127.0.0.1:3310"

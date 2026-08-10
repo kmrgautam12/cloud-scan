@@ -22,7 +22,11 @@ func (s *ScanServer) ScanFile(ctx context.Context, req *proto.ScanRequest) (res 
 	if req.JobId == "" || req.Bucket == "" || req.ObjectKey == "" {
 		return nil, status.Error(400, "Invalid request body")
 	}
-	infected, msg := s.service.ScanFile(req.JobId, req.Bucket, req.ObjectKey)
+	infected, msg, err := s.service.ScanFile(req.JobId, req.Bucket, req.ObjectKey)
+	if err != nil {
+		status.Error(500, err.Error())
+		return
+	}
 	res = &proto.ScanResponse{
 		Infected: infected,
 		Message:  msg,

@@ -2,6 +2,7 @@ package scanserver
 
 import (
 	"context"
+	"io"
 	"log"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -49,6 +50,16 @@ func NewCloudConfig() (cloudCfg *cloudConfig) {
 	return cloudCfg
 }
 
-func (s *ScannerService) ScanFile(jobId, bucket, key string) (infected bool, msg string) {
-	return true, ""
+func (s *ScannerService) ScanFile(jobId, bucket, key string) (infected bool, msg string, err error) {
+	object, err := s.cloudCfg.s3.GetObject(s.ctx, &s3.GetObjectInput{
+		Bucket: aws.String(bucket),
+	},
+	)
+	if err != nil {
+		return false, "", err
+	}
+	b, err := io.ReadAll(object.Body)
+	if err != nil {
+		return false, "", err
+	}
 }
